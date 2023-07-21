@@ -108,6 +108,9 @@ const PDFView = () => {
   return(
     <Document>
       <Page>
+        <Text style={styles.header} fixed>
+          ~ Created with react-pdf ~
+        </Text>
         <Text style={styles.title}>React PDF test</Text>
         <View style={styles.section}>
           <Text style={styles.chartTitle}>Line Chart</Text>
@@ -133,43 +136,61 @@ const PDFView = () => {
           <SampleLineChart />
         </ChartSvg>
         <Html>{html1}</Html>
+        <Text style={styles.pageNumber} render={({ pageNumber, totalPages }) => (
+          `${pageNumber} / ${totalPages}`
+        )} fixed />
       </Page>
     </Document>
   )
 }
 
 const styles = StyleSheet.create({
-page: {
-    backgroundColor: '#ffffff',
-},
-title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    textDecoration: 'underline',
+  page: {
+      backgroundColor: '#ffffff',
+  },
+  title: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      textDecoration: 'underline',
+      textAlign: 'center',
+  },
+  section: {
+      margin: 10,
+      padding: 10,
+      flexGrow: 1,
+  },
+  line: {
+      borderBottom: 1,
+      marginBottom: 40,
+  },
+  chartTitle: {
+      fontSize: 14,
+      marginBottom: 5,
+  },
+  sideBySide: {
+      display: 'flex',
+      flexDirection: 'row',
+  },
+  paragraph: {
+      fontSize: 10,
+      maxWidth: '40%',
+      marginTop: 20,
+  },
+  header: {
+    fontSize: 12,
+    marginBottom: 20,
     textAlign: 'center',
-},
-section: {
-    margin: 10,
-    padding: 10,
-    flexGrow: 1,
-},
-line: {
-    borderBottom: 1,
-    marginBottom: 40,
-},
-chartTitle: {
-    fontSize: 14,
-    marginBottom: 5,
-},
-sideBySide: {
-    display: 'flex',
-    flexDirection: 'row',
-},
-paragraph: {
-    fontSize: 10,
-    maxWidth: '40%',
-    marginTop: 20,
-},
+    color: 'grey',
+  },
+  pageNumber: {
+    position: 'absolute',
+    fontSize: 12,
+    bottom: 30,
+    left: 0,
+    right: 0,
+    textAlign: 'center',
+    color: 'grey',
+  },
 })
 
 export default PDFView;
